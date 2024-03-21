@@ -1,0 +1,153 @@
+Gráfica 
+- Banners 
+- Revistas
+- Material publicitário
+- Livros
+
+Objetivo: Gerenciamento das ordems dos pedidos que serão impressos 
+
+
+Usuários 
+- Gerente (Administrador)
+	- Gerente financeiro 
+	- Gerente da produção 
+	- Gerente de vendas 
+
+- Empregado (Assalariado / Opera qualquer tipo de equipamento dentro da gráfica)
+	- Cada empregado ocupa uma função dentro da empresa; 
+		- Empregado da produção
+		- Empregado de vendas 
+		- 
+
+- Empregado terceirizado 
+	- Não faz parte do quadro de funcionários, porém executam tarefas importantes
+		- Desde limpeza até alimentação dos funcionários. 
+
+Pedido 
+	- Data/hora de emissão e finalização
+	- Preço
+	- Pedido é feito pela equipe de vendas e é repassado para a equipe de produção
+	- Cada pedido é vinculado a um funcionário do setor de vendas para que ele 
+	se responsabilize pelo que será entregue; 
+
+Produção 
+	- Cada funcionário da produção se responsabiliza pela produção de um produto (impressão)
+
+Produto impresso 
+	- Banner
+	- Livro
+	- Panfleto
+
+O preço de cada impressão varia através de uma tabela fixa que é definida pelos gerentes; 
+
+
+
+---
+
+
+Interface Usuario 
+	- Usuário
+	- Código Identificação 
+
+
+Class Gerente gerente; 
+	- Nome; 
+	- ID; 
+	- Salario; 
+	- Contratação; 
+	- Endereco; 
+	- Telefone;
+	- Permissões Administrativas: true;
+	- Cargo Cargo; 
+
+Class Empregado
+	- ID 
+	- Nome		
+	- Salario
+	- Contratacao
+	- Endereco 
+	- Telefone
+	- Permissões Administrativas: false; 
+	 
+
+Class EmpregadoTerceirizado	
+	- ID
+	- EmpresaTerceirizada
+	- Nome
+	- PeriodoTrabalho
+	- Salario
+	- Permissões Administrativas: false; 
+
+
+
+Class Produto 
+	- IdProduto
+	- NomeProduto
+
+Class Pedido 
+	- IdPedido
+	- IdProduto
+	- DataHoraEmissao 
+	- DataHoraFinalizacao
+	- Preco
+	- Quantidade
+	- Produto
+
+
+Class GerenteProdução implements Usuario extends Gerente
+	- Setor; 
+	- Equipe [Array EmpregadoProducao];  
+	- Pedido [Array Pedido]
+	- Departamento; 
+
+
+Class GerenteVendas implements Usuario extends Gerente
+	- Setor; 
+	- Equipe [Array EmpregadoVendas];  
+	- Pedido [Array Pedidos]
+	- Departamento; 
+
+
+Class GerenteFinanceiro implements Usuario extends Gerente
+	- Setor
+	- Equipe [Array EmpregadoFinanceiro] 
+	- Lucros [Array Lucros]
+	- Departamento
+
+
+Class EmpregadoProducao implements Usuario extends Empregado
+	- Produto Produto
+	- IdPedido
+	- IDProduto
+	- Quantidade 
+	- Lote
+	- EmpregadoVendas EmpregadoVendas
+
+Class EmpregadoVendas implements Usuario extends Empregado
+	- IdPedido
+	- IdProduto
+	- Quantidade
+	- Lote
+	- EmpregadoProducao EmpregadoProducao
+
+
+Class EmpregadoFinanceiro implements Usuario extends Empregado 
+	- IdProduto
+	- Orcamentos [Array de orcamentos]
+	- RelatoriosFinanceiros
+	- Investimentos
+	- Lucros
+
+
+Class Banner extends Produto 
+	- TipoBanner
+	- MaterialBanner	
+	- TemaBanner
+
+Class Revista extends Produto 
+	- TipoRevista
+	- TemaRevista
+
+
+
+
